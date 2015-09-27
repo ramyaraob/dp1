@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Project Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Course Project Developing Data Products">
+  <meta name="author" content="Ramya Rao">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
 
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Course Project Developing Data Products</h1>
+    <h2></h2>
+    <p>Ramya Rao<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Iris Flower Family Predictor operation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The application consists of a left panel with four sliders, for petal length width and sepal length and width. </p>
+
+<p>The right panel displays the output of the prediction for the current user inputs.</p>
+
+<p>As the user modifies the inputs by sliding the slider, each slider input is converted into measurements in centimeters and used to predict the family.</p>
+
+<p>The predictor is developed using Random trees and the training data is the &#39;iris&#39; data set available in the r data sets, which represents Edgar Anderson&#39;s Iris Data.</p>
+
+<p>The prediction is based on the data provided in the Edgar Anderson&#39;s Iris Data.</p>
+
+<p>This famous (Fisher&#39;s or Anderson&#39;s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica</p>
+
+<p>Further details can be obtained from the documentation of iris data set.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Operation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The predictor will calculate and predict the family the considered flower would belong to.
+Iris is a genus of 260-300[1][2] species of flowering plants with showy flowers. It takes its name from the Greek word for a rainbow, which is also the name for the Greek goddess of the rainbow, Iris.
+The Iris genera is subclassified based on the sepal and petal dimensions. To calculate this data the predictor application can be used.</p>
+
+<p>Below is the operation of the predictor</p>
+
+<pre><code class="r">library(caret)
+tempTrain &lt;- createDataPartition(y=iris$Species, p=0.7, list=FALSE)
+
+  forTraining &lt;- iris[tempTrain,] 
+  forTesting &lt;- iris[-tempTrain,]
+
+  require(randomForest)
+  set.seed(12345)
+
+  rfTraining=randomForest(Species~.,data=forTraining,ntree=100, importance=TRUE)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <p>The prediction model analysis</p>
+
+<pre><code class="r">rfTraining
+</code></pre>
+
+<pre><code>## 
+## Call:
+##  randomForest(formula = Species ~ ., data = forTraining, ntree = 100,      importance = TRUE) 
+##                Type of random forest: classification
+##                      Number of trees: 100
+## No. of variables tried at each split: 2
+## 
+##         OOB estimate of  error rate: 8.57%
+## Confusion matrix:
+##            setosa versicolor virginica class.error
+## setosa         35          0         0   0.0000000
+## versicolor      0         31         4   0.1142857
+## virginica       0          5        30   0.1428571
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Thank you</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The application is available at <a href="https://ramyaraob.shinyapps.io/dataproduct">https://ramyaraob.shinyapps.io/dataproduct</a></p>
+
+<p>The related code and other documentation can be found at <a href="https://github.com/ramyaraob/developdataproduct">https://github.com/ramyaraob/developdataproduct</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Iris Flower Family Predictor operation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Operation'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Thank you'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
